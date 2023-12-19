@@ -2,6 +2,7 @@
  * The Town Class is where it all happens.
  * The Town is designed to manage all of the things a Hunter can do in town.
  */
+import java.util.Random;
 public class Town
 {
     //instance variables
@@ -10,6 +11,12 @@ public class Town
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private String treasureOne = "Dragon Skull";
+    private String treasureTwo = "Magic Wand";
+    private String treasureThree = "Egyptian Sword";
+    private int amountOfTreasures = 0;
+    private boolean t1, t2, t3;
+    private boolean t1Found, t2Found, t3Found;
 
     //Constructor
     /**
@@ -31,7 +38,6 @@ public class Town
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
     }
-
     public String getLatestNews()
     {
         return printMessage;
@@ -54,6 +60,28 @@ public class Town
         {
             printMessage += "\nWe're just a sleepy little town with mild mannered folk.";
         }
+        Random treasureGen = new Random();
+        int newTreasure = treasureGen.nextInt((amountOfTreasures - 1)) + 1;
+        if (newTreasure == 1) {
+            if (!t1Found) {
+                amountOfTreasures++;
+                t1Found = true;
+            }
+            if (newTreasure == 2) {
+                if (!t2Found) {
+                    amountOfTreasures++;
+                    t2Found = true;
+                }
+            }
+            if (newTreasure == 3) {
+                if (!t3Found) {
+                    amountOfTreasures++;
+                    t3Found = true;
+                }
+            }
+        }
+
+
     }
 
     /**
@@ -135,6 +163,43 @@ public class Town
      *
      * @return A Terrain object.
      */
+    public void findTheTreasure(){
+        Random rand = new Random();
+        int randomNum = rand.nextInt((amountOfTreasures - 1))+ 1;
+        if (randomNum == 4) {
+            if (t1 = true & t1Found == true) {
+                System.out.println("You have found a duplicate! Discard it");
+            } else {
+                System.out.println("You have found the " + treasureOne + "!");
+                t1 = true;
+            }
+        }
+        if (randomNum == 2){
+            if (t2 = true & t2Found == true) {
+                System.out.println("You have found a duplicate! Discard it");
+            }
+            else {
+                System.out.println("You have found the " + treasureTwo + "!");
+                t2 = true;
+            }
+        }
+        if (randomNum == 3){
+            if (t3 = true & t3Found == true) {
+                System.out.println("You have found a duplicate! Discard it");
+            }
+            else {
+                System.out.println("You have found the " + treasureThree + "!");
+                t3 = true;
+            }
+        }
+        if (randomNum == 1){
+            System.out.println("You have found nothing! Try again");
+        }
+        if (t1 & t2 & t3){
+            System.out.println("You have collected all the treasures! Congratulations!");
+            System.exit(0);
+        }
+    }
     private Terrain getNewTerrain()
     {
         double rnd = Math.random();
@@ -169,4 +234,5 @@ public class Town
         double rand = Math.random();
         return (rand < 0.5);
     }
+
 }
