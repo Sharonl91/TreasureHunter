@@ -54,7 +54,7 @@ public class Town
             printMessage += "\nWe're just a sleepy little town with mild mannered folk.";
         }
         Random treasureGen = new Random();
-        int newTreasure = treasureGen.nextInt(amountOfTreasures);
+        int newTreasure = treasureGen.nextInt(amountOfTreasures + 1 );
         if (newTreasure == 1) {
             if (!t1Found) {
                 amountOfTreasures++;
