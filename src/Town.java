@@ -140,9 +140,11 @@ public class Town
                 printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
                 printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
-                if (hunter.getGold() <= 0){
+                if (hunter.getGold() <= 0) {
                     printMessage += "\nYou have no gold.";
                     printMessage += "\nGame Over!!";
+                    System.out.println(printMessage);
+                    System.exit(0);
                 }
             }
         }
@@ -163,7 +165,7 @@ public class Town
             System.out.println("You have already searched this town");
         }
         Random rand = new Random();
-        int randomNum = rand.nextInt((amountOfTreasures - 1))+ 1;
+        int randomNum = rand.nextInt(amountOfTreasures + 1);
         if (randomNum == 4) {
             if (t1 = true & t1Found == true) {
                 System.out.println("You have found a duplicate! Discard it");

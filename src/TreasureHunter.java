@@ -109,6 +109,7 @@ public class TreasureHunter
             System.out.println("(B)uy something at the shop.");
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
+            System.out.println("(F)ind the treasure!");
             System.out.println("(L)ook for trouble!");
             System.out.println("Give up the hunt and e(X)it.");
             System.out.println();
@@ -137,6 +138,10 @@ public class TreasureHunter
                 System.out.println(currentTown.getLatestNews());
                 enterTown();
             }
+        }
+        else if (choice.equals("F") || choice.equals("f"))
+        {
+            currentTown.findTheTreasure();
         }
         else if (choice.equals("L") || choice.equals("l"))
         {
