@@ -17,13 +17,9 @@ public class Town
     private int amountOfTreasures = 0;
     private boolean t1, t2, t3;
     private boolean t1Found, t2Found, t3Found;
+    private boolean searched;
 
-    //Constructor
-    /**
-     * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
-     * @param s The town's shoppe.
-     * @param t The surrounding terrain.
-     */
+
     public Town(Shop shop, double toughness)
     {
         this.shop = shop;
@@ -37,16 +33,13 @@ public class Town
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        searched = false;
     }
     public String getLatestNews()
     {
         return printMessage;
     }
 
-    /**
-     * Assigns an object to the Hunter in town.
-     * @param h The arriving Hunter.
-     */
     public void hunterArrives(Hunter hunter)
     {
         this.hunter = hunter;
@@ -166,36 +159,46 @@ public class Town
      * @return A Terrain object.
      */
     public void findTheTreasure(){
+        if (searched == true){
+            System.out.println("You have already searched this town");
+        }
         Random rand = new Random();
         int randomNum = rand.nextInt((amountOfTreasures - 1))+ 1;
         if (randomNum == 4) {
             if (t1 = true & t1Found == true) {
                 System.out.println("You have found a duplicate! Discard it");
+                searched = true;
             } else {
                 System.out.println("You have found the " + treasureOne + "!");
                 t1 = true;
+                searched = true;
             }
         }
         if (randomNum == 2){
             if (t2 = true & t2Found == true) {
                 System.out.println("You have found a duplicate! Discard it");
+                searched = true;
             }
             else {
                 System.out.println("You have found the " + treasureTwo + "!");
                 t2 = true;
+                searched = true;
             }
         }
         if (randomNum == 3){
             if (t3 = true & t3Found == true) {
                 System.out.println("You have found a duplicate! Discard it");
+                searched = true;
             }
             else {
                 System.out.println("You have found the " + treasureThree + "!");
                 t3 = true;
+                searched = true;
             }
         }
         if (randomNum == 1){
             System.out.println("You have found nothing! Try again");
+            searched = true;
         }
         if (t1 & t2 & t3){
             System.out.println("You have collected all the treasures! Congratulations!");
