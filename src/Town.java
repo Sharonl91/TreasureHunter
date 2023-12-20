@@ -160,51 +160,50 @@ public class Town
      *
      * @return A Terrain object.
      */
-    public void findTheTreasure(){
-        if (searched == true){
-            System.out.println("You have already searched this town");
-        }
-        Random rand = new Random();
-        int randomNum = rand.nextInt(amountOfTreasures + 1);
-        if (randomNum == 4) {
-            if (t1 = true & t1Found == true) {
-                System.out.println("You have found a duplicate! Discard it");
-                searched = true;
-            } else {
-                System.out.println("You have found the " + treasureOne + "!");
-                t1 = true;
+    public void findTheTreasure() {
+        if (searched) {
+            printMessage += "You have already searched this town";
+        } else {
+            int randomNum = (int) (Math.random() * amountOfTreasures);
+            if (randomNum == 4) {
+                if (t1 && t1Found) {
+                    printMessage += "You have found a duplicate! Discard it";
+                    searched = true;
+                } else {
+                    printMessage +="You have found the " + treasureOne + "!";
+                    t1 = true;
+                    searched = true;
+                }
+            }
+            else if (randomNum == 2) {
+                if (t2 && t2Found) {
+                    printMessage += "You have found a duplicate! Discard it";
+                    searched = true;
+                } else {
+                    printMessage += "You have found the " + treasureTwo + "!";
+                    t2 = true;
+                    searched = true;
+                }
+            }
+            else if (randomNum == 3) {
+                if (t3 && t3Found) {
+                    printMessage +="You have found a duplicate! Discard it";
+                    searched = true;
+                } else {
+                    printMessage += "You have found the " + treasureThree + "!";
+                    t3 = true;
+                    searched = true;
+                }
+            }
+            else if (randomNum == 1) {
+                printMessage += "You have found nothing! Try again";
                 searched = true;
             }
-        }
-        if (randomNum == 2){
-            if (t2 = true & t2Found == true) {
-                System.out.println("You have found a duplicate! Discard it");
-                searched = true;
+            if (t1 && t2 && t3) {
+                printMessage += "You have collected all the treasures! Congratulations!";
+                System.out.println(printMessage);
+                System.exit(0);
             }
-            else {
-                System.out.println("You have found the " + treasureTwo + "!");
-                t2 = true;
-                searched = true;
-            }
-        }
-        if (randomNum == 3){
-            if (t3 = true & t3Found == true) {
-                System.out.println("You have found a duplicate! Discard it");
-                searched = true;
-            }
-            else {
-                System.out.println("You have found the " + treasureThree + "!");
-                t3 = true;
-                searched = true;
-            }
-        }
-        if (randomNum == 1){
-            System.out.println("You have found nothing! Try again");
-            searched = true;
-        }
-        if (t1 & t2 & t3){
-            System.out.println("You have collected all the treasures! Congratulations!");
-            System.exit(0);
         }
     }
     private Terrain getNewTerrain()
