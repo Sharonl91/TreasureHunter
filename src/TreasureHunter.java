@@ -12,6 +12,7 @@ public class TreasureHunter
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean cheatMode;
 
     //Constructor
     /**
@@ -23,6 +24,7 @@ public class TreasureHunter
         currentTown = null;
         hunter = null;
         hardMode = false;
+        cheatMode = false;
     }
 
     // starts the game; this is the only public method
@@ -49,10 +51,13 @@ public class TreasureHunter
         hunter = new Hunter(name, 10);
 
         System.out.print("Hard mode? (y/n): ");
-        String hard = scanner.nextLine();
-        if (hard.equals("y") || hard.equals("Y"))
+        String mode = scanner.nextLine();
+        if (mode.equals("y") || mode.equals("Y"))
         {
             hardMode = true;
+        }
+        else if (mode.equals("c") || mode.equals("C")){
+            cheatMode = true;
         }
     }
 
@@ -70,6 +75,11 @@ public class TreasureHunter
 
             // and the town is "tougher"
             toughness = 0.75;
+        }
+        else if (cheatMode)
+        {
+            markdown = 1;
+            toughness = 0;
         }
 
         // note that we don't need to access the Shop object

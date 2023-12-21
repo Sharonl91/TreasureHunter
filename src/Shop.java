@@ -85,11 +85,23 @@ public class Shop
      */
     public String inventory()
     {
-        String str = "Water: " + WATER_COST + " gold\n";
-        str += "Rope: " + ROPE_COST + " gold\n";
-        str += "Machete: " + MACHETE_COST + " gold\n";
-        str += "Horse: " + HORSE_COST + " gold\n";
-        str += "Boat: " + BOAT_COST + " gold\n";
+        String str = "";
+        if (markdown == 1)
+        {
+            str = "Water: 1 gold\n";
+            str += "Rope: 1 gold\n";
+            str += "Machete: 1 gold\n";
+            str += "Horse: 1 gold\n";
+            str += "Boat: 1 gold\n";
+        }
+        else
+        {
+            str = "Water: " + WATER_COST + " gold\n";
+            str += "Rope: " + ROPE_COST + " gold\n";
+            str += "Machete: " + MACHETE_COST + " gold\n";
+            str += "Horse: " + HORSE_COST + " gold\n";
+            str += "Boat: " + BOAT_COST + " gold\n";
+        }
 
         return str;
     }
@@ -138,11 +150,19 @@ public class Shop
     {
         if (isBuying)
         {
-            return getCostOfItem(item);
+            if (markdown == 1)
+            {
+                return 1;
+            }
+            else return getCostOfItem(item);
         }
         else
         {
-            return getBuyBackCost(item);
+            if (markdown == 1)
+            {
+            return 1;
+            }
+            else return getBuyBackCost(item);
         }
     }
 

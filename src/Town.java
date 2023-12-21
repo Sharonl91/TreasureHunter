@@ -11,6 +11,7 @@ public class Town
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private boolean cheatTown;
     private String treasureOne = "Dragon Skull";
     private String treasureTwo = "Magic Wand";
     private String treasureThree = "Egyptian Sword";
@@ -33,6 +34,7 @@ public class Town
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+        cheatTown = (toughness == 0);
         searched = false;
     }
     public String getLatestNews()
@@ -48,6 +50,10 @@ public class Town
         if (toughTown)
         {
             printMessage += "\nIt's pretty rough around here, so watch yourself.";
+        }
+        else if (cheatTown)
+        {
+            printMessage += "\nThis is just a place for you to farm gold.";
         }
         else
         {
@@ -116,6 +122,10 @@ public class Town
         {
             noTroubleChance = 0.66;
         }
+        else if (cheatTown)
+        {
+            noTroubleChance = 1;
+        }
         else
         {
             noTroubleChance = 0.33;
@@ -134,6 +144,12 @@ public class Town
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
                 printMessage += "\nYou won the brawl and receive " +  goldDiff + " gold.";
                 hunter.changeGold(goldDiff);
+            }
+            else if (cheatTown)
+            {
+                printMessage += "Come on, stranger! You shoulda used less strength. Here, take all of there.";
+                printMessage += "\nYou cheated through the brawl and receive 100 gold.";
+                hunter.changeGold(100);
             }
             else
             {
